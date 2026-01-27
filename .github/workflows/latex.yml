@@ -53,7 +53,7 @@ jobs:
       - name: Create Release and Upload PDF
         uses: softprops/action-gh-release@v2
         with:
-          files: TES.pdf
+          files: MAIN.pdf
           tag_name: ${{ steps.get_version.outputs.version }}
           body: |
           
