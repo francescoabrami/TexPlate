@@ -1,7 +1,5 @@
 # 📝 LaTeX Template for Notes, Theses, and Documents 📄
 
-[![Latest Release](https://img.shields.io/github/v/release/francescoabrami/TexPlate)](https://github.com/francescoabrami/TexPlate/releases/latest)
-
 Welcome! This repository provides a powerful, automated template for creating professional-looking documents with LaTeX. It's designed for students, academics, and anyone wanting to write beautifully typeset notes, articles, or even a full thesis, without getting bogged down by the setup.
 
 The system automatically compiles your LaTeX code into a PDF every time you push changes and creates a new release with your document.
@@ -93,7 +91,7 @@ env:
 
 #### Customizing the Release Message
 
-The release message is generated from the **title and body of your latest commit**. To create a detailed release note, write a descriptive commit message:
+The release message is generated from the`.github/workflows/latex.yml` file. To create a detailed release note, write a descriptive commit message. The release note will include the whole commit message.
 
 ```bash
 git commit -m "feat: Add chapter on Quantum Mechanics" -m "This chapter covers the foundational principles and includes new diagrams for wave functions."
@@ -101,6 +99,19 @@ git commit -m "feat: Add chapter on Quantum Mechanics" -m "This chapter covers t
 *   The first line (`feat: ...`) becomes the release title.
 *   The second line (`This chapter ...`) becomes the body text.
 
+If you wish to modify this you can by going to the `.github/workflows/latex.yml` and change this section:
+
+
+```yaml
+body: |
+          
+ Release for the version ${{ steps.get_version.outputs.version }} of the ${{ env.PDF_NAME }} notes.
+ This release includes the latest compiled version of the document to this date.
+
+### Changes of these release:
+
+${{ github.event.head_commit.message }}
+```
 ---
 
 ### 🔗 Get a Link to Your Latest Document
@@ -142,11 +153,14 @@ If you need a feature from a newer or older TeX Live, you can change the version
 ```yaml
 # In .github/workflows/latex.yml
 
-env:
-  TEXLIVE_VERSION: 2023 # Change this to your desired year
+with:
+  root_file: main.tex
+  texlive_version: '2023' # Year of the version
 ```
 Just be aware that changing this may introduce compilation differences.
 
 ### 🤝 Contributing
 
 Found a way to improve this template? Feel free to open an issue or submit a pull request!
+
+[![Latest Release](https://img.shields.io/github/v/release/francescoabrami/TexPlate)](https://github.com/francescoabrami/TexPlate/releases/latest)
