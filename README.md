@@ -78,11 +78,11 @@ You can find all your compiled PDFs under the **Releases** tab on your repositor
 
 ### 🔧 Advanced Configuration
 
-You can customize the release behavior by editing the `.github/workflows/compile.yml` file.
+You can customize the release behavior by editing the `.github/workflows/latex.yml` file.
 
 #### Customizing the PDF Filename
 
-By default, the released PDF is named `document.pdf`. You can change this by modifying the `env` section in the workflow file:
+By default, the released PDF is named `DOCUMENT.pdf`. You can change this by modifying the `env` section in the workflow file:
 
 ```yaml
 # In .github/workflows/compile.yml
@@ -112,9 +112,9 @@ Use the following URL format:
 `https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>/releases/latest/download/<PDF_FILENAME>`
 
 **Example:**
-If your username is `robert`, your repo is `LaTeX-Templates`, and your PDF is named `document.pdf`, the link would be:
+If your username is `robert`, your repo is `LaTeX-Templates`, and your PDF is named `DOCUMENT.pdf`, the link would be:
 
-`https://github.com/robert/LaTeX-Templates/releases/latest/download/document.pdf`
+`https://github.com/robert/LaTeX-Templates/releases/latest/download/DOCUMENT.pdf`
 
 ---
 
@@ -138,11 +138,12 @@ The workflow is designed to be robust, but LaTeX can be picky. Here are common i
 
 This workflow uses a specific **yearly version** of TeX Live (e.g., `2023`). This is a critical feature! It prevents your document from breaking when new, potentially incompatible versions of LaTeX packages are released.
 
-If you need a feature from a newer or older TeX Live, you can change the version in `.github/workflows/compile.yml`:
+If you need a feature from a newer or older TeX Live, you can change the version in `.github/workflows/latex.yml`:
 ```yaml
-# Use TeX Live 2024
+# In .github/workflows/latex.yml
 
-image: ghcr.io/xu-cheng/texlive-historic-alpine:2024
+env:
+  TEXLIVE_VERSION: 2023 # Change this to your desired year
 ```
 Just be aware that changing this may introduce compilation differences.
 
