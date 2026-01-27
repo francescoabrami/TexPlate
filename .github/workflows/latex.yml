@@ -16,6 +16,10 @@ jobs:
   build_latex:
 
     runs-on: ubuntu-latest
+
+    env:
+      PDF_NAME: "MAIN.pdf"
+
     steps:
 
       # 1. Checkout repository
@@ -60,6 +64,3 @@ jobs:
             Release for the version ${{ steps.get_version.outputs.version }} of the ${{ env.PDF_NAME }} notes.
 
             This release includes the latest compiled version of the document to this date.
-
-        env:
-          PDF_NAME: "MAIN.pdf"
