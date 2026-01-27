@@ -91,7 +91,7 @@ env:
 
 #### Customizing the Release Message
 
-The release message is generated from the`.github/workflows/latex.yml` file. To create a detailed release note, write a descriptive commit message. The release note will include only the second part of the commit message.
+The release message is generated from the`.github/workflows/latex.yml` file. To create a detailed release note, write a descriptive commit message. The release note will include all of the commit message.
 
 ```bash
 git commit -m "feat: Add chapter on Quantum Mechanics" -m "This chapter covers the foundational principles and includes new diagrams for wave functions."
@@ -108,7 +108,7 @@ body: |
 
 ### Changes of these release:
 
-${{ steps.get_commit_body.outputs.body }}
+${{ github.event.head_commit.message }}
 ```
 ---
 
