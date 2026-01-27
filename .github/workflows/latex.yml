@@ -11,17 +11,14 @@ on:
     paths:
       - main.tex
 
-env:
-  PDF_NAME: "MAIN.pdf"
-
 jobs:
 
   build_latex:
 
     runs-on: ubuntu-latest
 
-    container:
-      image: ghcr.io/xu-cheng/texlive-historic-alpine:2023
+    env:
+      PDF_NAME: "MAIN.pdf"
 
     steps:
 
@@ -31,8 +28,10 @@ jobs:
 
       # 2. Run LaTeX using Docker
       - name: Compile LaTeX document
-        run: |
-          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+          texlive_version: '2023'
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
@@ -44,7 +43,7 @@ jobs:
       - name: Extract version and rename PDF
         id: get_version
         run: |
-          VERSION=$(grep -oP '\\def\\version\{\K[^\}]+' main.tex || echo "v0.0.0")
+          VERSION=$(grep -oP '\\def\\version\{\K[^\}]+' main.tex || echo "0.0.0")
           echo "version=v$VERSION" >> $GITHUB_OUTPUT
 
           if [ -f "main.pdf" ]; then
@@ -61,5 +60,11 @@ jobs:
           files: ${{ env.PDF_NAME }}
           tag_name: ${{ steps.get_version.outputs.version }}
           body: |
-            Release for version ${{ steps.get_version.outputs.version }} of ${{ env.PDF_NAME }}.
-            Compiled with TeX Live ${{ env.TEXLIVE_VERSION }}.
+          
+            Release for the version ${{ steps.get_version.outputs.version }} of the ${{ env.PDF_NAME }} notes.
+
+            This release includes the latest compiled version of the document to this date.
+
+            ### Changes of these release:
+
+            ${{ github.event.head_commit.message }}
