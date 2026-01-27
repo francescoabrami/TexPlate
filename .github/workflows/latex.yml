@@ -11,10 +11,8 @@ on:
     paths:
       - main.tex
 
-
 env:
   PDF_NAME: "MAIN.pdf"
-  TEXLIVE_VERSION: 2023
 
 jobs:
 
@@ -23,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/xu-cheng/texlive-historic-alpine:${{ env.TEXLIVE_VERSION }}
+      image: ghcr.io/xu-cheng/texlive-historic-alpine:2023
 
     steps:
 
