@@ -43,7 +43,7 @@ jobs:
           echo "version=v$VERSION" >> $GITHUB_OUTPUT
 
           if [ -f "main.pdf" ]; then
-            mv main.pdf ${{ env.PDF_NAME }}
+            mv main.pdf "$PDF_NAME"
           else
             echo "${{ env.PDF_NAME }} not found!"
             exit 1
