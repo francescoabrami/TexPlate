@@ -11,14 +11,19 @@ on:
     paths:
       - main.tex
 
+
+env:
+  PDF_NAME: "MAIN.pdf"
+  TEXLIVE_VERSION: 2023
+
 jobs:
 
   build_latex:
 
     runs-on: ubuntu-latest
 
-    env:
-      PDF_NAME: "MAIN.pdf"
+    container:
+      image: ghcr.io/xu-cheng/texlive-historic-alpine:${{ env.TEXLIVE_VERSION }}
 
     steps:
 
@@ -28,10 +33,8 @@ jobs:
 
       # 2. Run LaTeX using Docker
       - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: main.tex
-          texlive_version: '2023'
+        run: |
+          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
@@ -60,7 +63,5 @@ jobs:
           files: ${{ env.PDF_NAME }}
           tag_name: ${{ steps.get_version.outputs.version }}
           body: |
-          
-            Release for the version ${{ steps.get_version.outputs.version }} of the ${{ env.PDF_NAME }} notes.
-
-            This release includes the latest compiled version of the document to this date.
+            Release for version ${{ steps.get_version.outputs.version }} of ${{ env.PDF_NAME }}.
+            Compiled with TeX Live ${{ env.TEXLIVE_VERSION }}.
