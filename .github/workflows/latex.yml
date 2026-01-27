@@ -52,18 +52,8 @@ jobs:
             echo "${{ env.PDF_NAME }} not found!"
             exit 1
           fi
-
-
-      # 4. Extract Commit Body Message
-      - name: Extract Commit Body
-        id: get_commit_body
-        run: |
-          COMMIT_BODY=$(echo "${{ github.event.head_commit.message }}" | tail -n +2)
-          echo "body<<EOF" >> $GITHUB_OUTPUT
-          echo "$COMMIT_BODY" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      # 5. Create Release and Upload PDF
+          
+      # 4. Create Release and Upload PDF
       - name: Create Release and Upload PDF
         uses: softprops/action-gh-release@v2
         with:
@@ -77,4 +67,4 @@ jobs:
 
             ### Changes of these release:
 
-            ${{ steps.get_commit_body.outputs.body }}
+            ${{ github.event.head_commit.message }}
