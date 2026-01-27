@@ -43,9 +43,9 @@ jobs:
           echo "version=v$VERSION" >> $GITHUB_OUTPUT
 
           if [ -f "main.pdf" ]; then
-            mv "main.pdf" "MAIN.pdf"
+            mv main.pdf "${{ env.PDF_NAME }}"
           else
-            echo "MAIN.pdf not found!"
+            echo "${{ env.PDF_NAME }} not found!"
             exit 1
           fi
           
@@ -53,13 +53,13 @@ jobs:
       - name: Create Release and Upload PDF
         uses: softprops/action-gh-release@v2
         with:
-          files: MAIN.pdf
+          files: ${{ env.PDF_NAME }} 
           tag_name: ${{ steps.get_version.outputs.version }}
           body: |
           
-            Release for the version ${{ steps.get_version.outputs.version }} of the MAIN.pdf notes.
+            Release for the version ${{ steps.get_version.outputs.version }} of the ${{ env.PDF_NAME }} notes.
 
             This release includes the latest compiled version of the document to this date.
 
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PDF_NAME: "MAIN.pdf"
