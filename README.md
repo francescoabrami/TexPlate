@@ -1,7 +1,5 @@
 # 📝 LaTeX Template for Notes, Theses, and Documents 📄
 
-[![Compile LaTeX](https://github.com/francescoabrami/LaTeX-Templates/actions/workflows/compile.yml/badge.svg)](https://github.com/francescoabrami/TexPlate/actions/workflows/compile.yml)
-
 [![Latest Release](https://img.shields.io/github/v/release/francescoabrami/TexPlate)](https://github.com/francescoabrami/TexPlate/releases/latest)
 
 Welcome! This repository provides a powerful, automated template for creating professional-looking documents with LaTeX. It's designed for students, academics, and anyone wanting to write beautifully typeset notes, articles, or even a full thesis, without getting bogged down by the setup.
@@ -50,6 +48,7 @@ Open `main.tex`. This file controls the final document. To add the new sections 
 
 ```latex
 % In main.tex
+
 \begin{document}
 
 \input{sections/01-Section}
@@ -86,7 +85,8 @@ You can customize the release behavior by editing the `.github/workflows/compile
 By default, the released PDF is named `document.pdf`. You can change this by modifying the `env` section in the workflow file:
 
 ```yaml
-# in .github/workflows/compile.yml
+# In .github/workflows/compile.yml
+
 env:
   PDF_NAME: "My-Thesis-Title.pdf" # Change this to your desired filename
 ```
@@ -141,6 +141,11 @@ This workflow uses a specific **yearly version** of TeX Live (e.g., `2023`). Thi
 If you need a feature from a newer or older TeX Live, you can change the version in `.github/workflows/compile.yml`:
 ```yaml
 # Use TeX Live 2024
+
 image: ghcr.io/xu-cheng/texlive-historic-alpine:2024
 ```
 Just be aware that changing this may introduce compilation differences.
+
+### 🤝 Contributing
+
+Found a way to improve this template? Feel free to open an issue or submit a pull request!
