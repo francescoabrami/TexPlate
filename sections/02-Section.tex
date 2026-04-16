@@ -15,9 +15,44 @@
 \subsubsection{Subsubsection - 2}
 
 \begin{figure}[h]
-\centering
+\begin{center}
+
 \includegraphics[width=0.75\textwidth]{images/test.jpeg}
-\caption{Example Figure}
+\caption{Example figure}
+	
+\end{center}
 \end{figure}
+
+
+\begin{figure}[h]
+\begin{center}
+
+\begin{tikzpicture}[transform shape]
+	\draw (6, 7) to[capacitor, l={$C_{in}$}] (6, 4);
+	\node[nmos, rotate=-90](N1) at (7.48, 7){} node[anchor=north] at (N1.text){$SW_1$};
+	\draw (10.5, 7) to[empty diode, l={$SW_2$}] (12.875, 7);
+	\draw (12.875, 7) to[capacitor, l={$C_{out}$}] (12.875, 4);
+	\draw (14.875, 4) to[generic, v=$V_{out}$, voltage/shift=1.5] (14.875, 7);
+	\draw (5, 7) -- (6.71, 7);
+	\draw (12.875, 7) -- (14.875, 7);
+	\draw (5, 7) to[open, o-o, v<=$V_{in}$, voltage/bump b=1] (5, 4);
+	\node[transformer core, cute] at (9.46, 5.45){};
+	\draw (5, 4) -- (5.875, 4);
+	\draw (10.5, 6.5) -| (10.5, 7);
+	\draw (5.875, 4) -- (8.375, 4);
+	\draw (8.41, 4.4) -| (8.375, 4);
+	\draw (8.41, 6.5) |- (8.25, 6.5) -| (8.25, 7);
+	\draw (10.51, 4.4) |- (12.875, 4);
+	\draw (14.875, 4) |- (12.875, 4);
+	\node[circ] at (9.67, 4.75){};
+	\node[circ] at (9.25, 6.15){};
+	\node[shape=rectangle, minimum width=0.59cm, minimum height=0.59cm] at (8.437, 5.5){} node[anchor=center, align=center, text width=0.202cm, inner sep=6pt] at (8.437, 5.5){$L_1$};
+	\node[shape=rectangle, minimum width=0.59cm, minimum height=0.59cm] at (10.5, 5.5){} node[anchor=center, align=center, text width=0.202cm, inner sep=6pt] at (10.5, 5.5){$L_2$};
+\end{tikzpicture}
+
+\caption{Flyback converter}
+\end{center}
+\end{figure}
+
 
 \end{document}
