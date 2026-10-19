@@ -1,7 +1,7 @@
 %% PACKAGES %%
 
 \usepackage{makeidx}
-\usepackage[english]{babel}
+\usepackage[english,italian]{babel}
 \usepackage{floatflt}
 \usepackage{titlesec}
 \usepackage{listings}
@@ -77,7 +77,7 @@
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
-%\definecolor{codepurple}{rgb}{1,1,1}
+\definecolor{codepurple}{rgb}{1,1,1}
 \definecolor{backcolour}{rgb}{1,1,1} % BACKCOLOUR WHITE
 
 \lstdefinestyle{matstyle}{
@@ -164,13 +164,44 @@
 \newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
 \renewcommand{\dateseparator}{-}
 
+%% FILL SECTION FOR TITLE
+
+\newcommand{\documentlanguage}{english}
+\ifthenelse{\equal{\documentlanguage}{italian}}
+    {\AtBeginDocument{\selectlanguage{italian}}}
+    {\AtBeginDocument{\selectlanguage{english}}}
+    
+\def\AnnoS{20XX}
+\def\AnnoF{20YY}
+\def\StudentID{s123456}
+\def\Sem{I}
+
+%% LANGUAGE COMMAND DEPENDENT %%
+
+\newcommand{\CourseTitle}{\iflanguage{english}{Course Title}{Titolo Corso}}
+\newcommand{\CourseCode}{\iflanguage{english}{Course Code}{Codice Corso}}
+\newcommand{\Professor}{\iflanguage{english}{Prof. Name Surname}{Prof. Nome Cognome}}
+\newcommand{\StudentName}{\iflanguage{english}{Name}{Nome}}
+\newcommand{\StudentSurname}{\iflanguage{english}{Surname}{Cognome}}
+\newcommand{\Year}{\iflanguage{english}{Academic Year \AnnoS \;- \AnnoF}{Anno Accademico \AnnoS \;- \AnnoF}}
+\newcommand{\Semester}{\iflanguage{english}{Semester \Sem}{Semestre \Sem}}
+\newcommand{\Version}{\iflanguage{english}{Version: \version \;- \today}{Versione: \version \;- \today}}
+
 %% TITLE INFORMATION AND VERSIONING %%
 
-\title{\textbf{Analisi Matematica II\\ 26ACIOA \\ Prof. Marcello Edoardo Delitala}}
-\author{Francesco Abrami  - s310570}
-\date{Anno Accademico 2026 - 2027 \\ \vspace{10pt} \small {Version: \version \;- \today}}
+\title{\textbf{\CourseTitle \\ \CourseCode \\ \Professor}}
+\author{\StudentName \; \StudentSurname \;- \StudentID}
+\date{\Year \:  \Semester \\ \vspace{10pt} \small {\Version}}
 
 
+% The Course title is indicated as the one listed on the PoliTO online pages
+% The Course code si also listed on the university page
+% The professor name will list all of the professor (multiple lines if more than one)
+% The Student Name will show the student name
+% The Student Id will show the ID of the student
+% Version will show the current file version
+% The date will be set as the date the underlying OS is using
+% The Semester or year will indicate the period of the course
 
 
 
