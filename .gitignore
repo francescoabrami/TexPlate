@@ -1,5 +1,4 @@
-## Core LaTex/pdfLaTex auxiliary files:
-
+## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
 *.log
@@ -13,8 +12,11 @@
 *.cb2
 .*.lb
 
-## Intermediate documents:
+## Ignore all .pdf documents:
 
+*.pdf
+
+## Intermediate documents:
 *.dvi
 *.xdv
 *-converted-to.*
@@ -24,15 +26,12 @@
 # *.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
-
 .pdf
 
-## Ignore all .pdf generated locally, the repo compiles and release:
-
+## Ignore all .pdf files since the repo does the commit of the latest version by forcing it:
 *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
-
 *.bbl
 *.bbl-SAVE-ERROR
 *.bcf
@@ -41,9 +40,9 @@
 *-blx.aux
 *-blx.bib
 *.run.xml
+*.dSYM
 
 ## Build tool auxiliary files:
-
 *.fdb_latexmk
 *.synctex
 *.synctex(busy)
@@ -54,12 +53,10 @@
 rubber.cache
 
 ## Build tool directories for auxiliary files
-
 # latexrun
 latex.out/
 
 ## Auxiliary and intermediate files from other packages:
-
 # algorithms
 *.alg
 *.loa
@@ -332,9 +329,21 @@ TSWLatexianTemp*
 *.xwm
 
 # MacOS
-
 .DS_Store
 Thumbs.db
+
+# Build directories
+**/.build/
+
+# Executables from older configurations
+**/a.out
+**/program
+
+# macOS debug symbols
+**/*.dSYM/
+
+# Object files
+*.o
 
 # REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
